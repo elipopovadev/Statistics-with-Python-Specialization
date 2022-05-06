@@ -179,17 +179,17 @@ df_women = da_women.groupby(
     ["MVU"])["RIDAGEYR", "BMXHT", "BMXBMI"].mean()  # mean for women
 
 # report the ratio between the largest and smallest mean
-df_men["RIDAGEYR"].max() - df_men["RIDAGEYR"].min()
-df_women["RIDAGEYR"].max() - df_women["RIDAGEYR"].min()
+df_men["RIDAGEYR"].max() / df_men["RIDAGEYR"].min()
+df_women["RIDAGEYR"].max() / df_women["RIDAGEYR"].min()
 
-df_men["BMXHT"].max() - df_men["BMXHT"].min()
-df_women["BMXHT"].max() - df_women["BMXHT"].min()
+df_men["BMXHT"].max() / df_men["BMXHT"].min()
+df_women["BMXHT"].max() / df_women["BMXHT"].min()
 
-df_men["BMXBMI"].max() - df_men["BMXBMI"].min()
-df_women["BMXBMI"].max() - df_women["BMXBMI"].min()
+df_men["BMXBMI"].max() / df_men["BMXBMI"].min()
+df_women["BMXBMI"].max() / df_women["BMXBMI"].min()
 
 ''' Q6a. Comment on the extent to which mean age, height, and BMI vary among the MVUs.'''
-# The mean age vary the most among the MVU, because the diff is the largest (13.09 for women and  13,10 for men)
+# The mean age vary the most among the MVU, because the diff between the smallest and the largest value is the largest (13.09 for women and  13,10 for men)
 
 ''' Q6b. Calculate the inter-quartile range (IQR) for age, height, and BMI for each gender and each MVU.
  Report the ratio between the largest and smalles IQR across the MVUs. '''
