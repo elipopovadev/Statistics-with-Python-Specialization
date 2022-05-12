@@ -1,0 +1,27 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+da = pd.read_csv(
+    "C:/Users/eli/Desktop/YtPruboBEemdqA7UJJ_tgg_63e179e3722f4ef783f58ff6e395feb7_nhanes_2015_2016.csv")
+
+
+# jointplot returns a jointgrid, which we need to assign to a variable in order to add an annotation
+# This line is almost like the original, but it seems that fill is needed explicitly now.
+# And most importantly, ".annotate" is not just deprecated. It's gone.
+jg = sns.jointplot(x='BMXLEG', y='BMXARML', data=da, kind='kde', fill=True)
+
+# To get the correlation, we need to consider only the records with NA values for either measurement.
+da_no_nulls = da[['BMXLEG', 'BMXARML']].dropna()
+pearsonr, p = stats.pearsonr(da_no_nulls.BMXLEG, da_no_nulls.BMXARML)
+pearson_str = f'pearsonr = {pearsonr:.2f}; p = {p}'
+
+# Placing the annotation somewhere readable requires that we find the max of the axes
+jg.ax_joint.text(
+    jg.ax_joint._axes.xaxis.get_data_interval()[1],
+    jg.ax_joint._axes.yaxis.get_data_interval()[1],
+    pearson_str,
+    horizontalalignment='right')
+plt.show()
