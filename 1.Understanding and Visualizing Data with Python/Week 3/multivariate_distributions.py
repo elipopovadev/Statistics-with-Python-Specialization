@@ -1,4 +1,3 @@
-# import the packages we are going to be using
 import numpy as np  # for getting our distribution
 import matplotlib.pyplot as plt  # for plotting
 import seaborn as sns
