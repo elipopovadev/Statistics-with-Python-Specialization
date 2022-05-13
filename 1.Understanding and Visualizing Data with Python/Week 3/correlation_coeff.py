@@ -45,7 +45,6 @@ g.ax_joint.annotate(f'$\\rho = {r:.3f}$', xy=(
 plt.show()
 
 ##############################################################################
-
 # How to create correlation coefficiant for many plots
 import numpy as np
 import pandas as pd
@@ -66,7 +65,7 @@ da_no_nulls = da[["BPXDI1", "BPXDI2", "RIAGENDRx", "RIDRETH1"]].dropna()
 # create plot
 g = sns.lmplot(x = "BPXDI1", y = "BPXDI2", data = da_no_nulls, row = "RIAGENDRx", col = "RIDRETH1",height=3, aspect=1)
 
-# calculate function about how to calculate correlation
+# create function about how to calculate correlation
 def annotate(data, **kws):
     r, p = sp.stats.pearsonr(data["BPXDI1"], data["BPXDI1"])
     ax = plt.gca()
@@ -74,5 +73,4 @@ def annotate(data, **kws):
             transform=ax.transAxes)
     
 # map correlation to every plot    
-g.map_dataframe(annotate)
-plt.show()
+g.map_data
