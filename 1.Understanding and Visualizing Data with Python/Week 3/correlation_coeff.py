@@ -43,3 +43,36 @@ g.ax_joint.annotate(f'$\\rho = {r:.3f}$', xy=(
     0.1, 0.9), xycoords='axes fraction')
 
 plt.show()
+
+##############################################################################
+
+# How to create correlation coefficiant for many plots
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy as sp
+
+''' Question 2
+Construct a grid of scatterplots between the first systolic and the first diastolic blood pressure measurement.
+Stratify the plots by gender (rows) and by race/ethnicity groups (columns).'''
+
+da = pd.read_csv("C:/Users/eli/Desktop/YtPruboBEemdqA7UJJ_tgg_63e179e3722f4ef783f58ff6e395feb7_nhanes_2015_2016.csv")
+da["RIAGENDRx"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
+
+# drop all nulls
+da_no_nulls = da[["BPXDI1", "BPXDI2", "RIAGENDRx", "RIDRETH1"]].dropna()
+
+# create plot
+g = sns.lmplot(x = "BPXDI1", y = "BPXDI2", data = da_no_nulls, row = "RIAGENDRx", col = "RIDRETH1",height=3, aspect=1)
+
+# calculate function about how to calculate correlation
+def annotate(data, **kws):
+    r, p = sp.stats.pearsonr(data["BPXDI1"], data["BPXDI1"])
+    ax = plt.gca()
+    ax.text(.05, .8, 'r={:.2f}, p={:.2g}'.format(r, p),
+            transform=ax.transAxes)
+    
+# map correlation to every plot    
+g.map_dataframe(annotate)
+plt.show()
