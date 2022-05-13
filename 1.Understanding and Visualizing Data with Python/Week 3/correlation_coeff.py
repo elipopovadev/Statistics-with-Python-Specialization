@@ -7,7 +7,7 @@ from scipy import stats
 da = pd.read_csv(
     "C:/Users/eli/Desktop/YtPruboBEemdqA7UJJ_tgg_63e179e3722f4ef783f58ff6e395feb7_nhanes_2015_2016.csv")
 
-
+# First solution:
 # jointplot returns a jointgrid, which we need to assign to a variable in order to add an annotation
 # This line is almost like the original, but it seems that fill is needed explicitly now.
 # And most importantly, ".annotate" is not just deprecated. It's gone.
@@ -24,4 +24,22 @@ jg.ax_joint.text(
     jg.ax_joint._axes.yaxis.get_data_interval()[1],
     pearson_str,
     horizontalalignment='right')
+plt.show()
+
+
+# Second solution:
+
+# create plot
+g = sns.jointplot(x="BMXLEG", y="BMXARML", kind='kde', data=da)
+
+# create mask to omit NaN values from pearson calc
+nonan = ~np.logical_or(np.isnan(da.BMXLEG), np.isnan(da.BMXARML))
+
+# calc pearson value and pvalue
+r, p = stats.pearsonr(da.BMXLEG[nonan], da.BMXARML[nonan])
+
+# place pearson value
+g.ax_joint.annotate(f'$\\rho = {r:.3f}$', xy=(
+    0.1, 0.9), xycoords='axes fraction')
+
 plt.show()
