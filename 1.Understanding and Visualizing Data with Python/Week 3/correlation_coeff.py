@@ -49,20 +49,18 @@ plt.show()
 Construct a grid of scatterplots between the first systolic and the first diastolic blood pressure measurement.
 Stratify the plots by gender (rows) and by race/ethnicity groups (columns).'''
 
-da["RIAGENDRx"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
-
 # drop all nulls
-da_no_nulls = da[["BPXDI1", "BPXDI2", "RIAGENDRx", "RIDRETH1"]].dropna()
+da_no_nulls = da[["BPXDI1", "BPXDI2", "RIAGENDR", "RIDRETH1"]].dropna()
 
 # create plot
-g = sns.lmplot(x = "BPXDI1", y = "BPXDI2", data = da_no_nulls, row = "RIAGENDRx", col = "RIDRETH1",height=3, aspect=1)
+g = sns.lmplot(x = "BPXDI1", y = "BPXDI2", data = da_no_nulls, row = "RIAGENDR", col = "RIDRETH1",height=3, aspect=1)
 
 # create function about how to calculate correlation
 def annotate(data, **kws):
-    r, p = sp.stats.pearsonr(data["BPXDI1"], data["BPXDI1"])
+    r, p = sp.stats.pearsonr(data["BPXDI1"], data["BPXDI2"])
     ax = plt.gca()
     ax.text(.05, .8, 'r={:.2f}, p={:.2g}'.format(r, p),
             transform=ax.transAxes)
     
 # map correlation to every plot    
-g.map_data
+g.map_dataframe(annotate)
