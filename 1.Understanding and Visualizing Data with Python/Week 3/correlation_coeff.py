@@ -49,7 +49,6 @@ plt.show()
 Construct a grid of scatterplots between the first systolic and the first diastolic blood pressure measurement.
 Stratify the plots by gender (rows) and by race/ethnicity groups (columns).'''
 
-
 # read data from csv file
 da = pd.read_csv(
     "C:/Users/eli/Desktop/YtPruboBEemdqA7UJJ_tgg_63e179e3722f4ef783f58ff6e395feb7_nhanes_2015_2016.csv")
