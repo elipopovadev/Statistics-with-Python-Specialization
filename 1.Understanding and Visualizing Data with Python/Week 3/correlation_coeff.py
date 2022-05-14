@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy import stats
+import scipy as sp
 
 da = pd.read_csv(
     "C:/Users/eli/Desktop/YtPruboBEemdqA7UJJ_tgg_63e179e3722f4ef783f58ff6e395feb7_nhanes_2015_2016.csv")
@@ -15,7 +15,7 @@ jg = sns.jointplot(x='BMXLEG', y='BMXARML', data=da, kind='kde', fill=True)
 
 # To get the correlation, we need to consider only the records with NA values for either measurement.
 da_no_nulls = da[['BMXLEG', 'BMXARML']].dropna()
-pearsonr, p = stats.pearsonr(da_no_nulls.BMXLEG, da_no_nulls.BMXARML)
+pearsonr, p = sp.stats.pearsonr(da_no_nulls.BMXLEG, da_no_nulls.BMXARML)
 pearson_str = f'pearsonr = {pearsonr:.2f}; p = {p}'
 
 # Placing the annotation somewhere readable requires that we find the max of the axes
@@ -36,7 +36,7 @@ g = sns.jointplot(x="BMXLEG", y="BMXARML", kind='kde', data=da)
 nonan = ~np.logical_or(np.isnan(da.BMXLEG), np.isnan(da.BMXARML))
 
 # calc pearson value and pvalue
-r, p = stats.pearsonr(da.BMXLEG[nonan], da.BMXARML[nonan])
+r, p = sp.stats.pearsonr(da.BMXLEG[nonan], da.BMXARML[nonan])
 
 # place pearson value
 g.ax_joint.annotate(f'$\\rho = {r:.3f}$', xy=(
@@ -44,14 +44,8 @@ g.ax_joint.annotate(f'$\\rho = {r:.3f}$', xy=(
 
 plt.show()
 
-##############################################################################
-# How to create correlation coefficiant for many plots
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import scipy as sp
 
+# How to create correlation coefficiant for many plots
 ''' Question 2
 Construct a grid of scatterplots between the first systolic and the first diastolic blood pressure measurement.
 Stratify the plots by gender (rows) and by race/ethnicity groups (columns).'''
