@@ -49,6 +49,8 @@ plt.show()
 Construct a grid of scatterplots between the first systolic and the first diastolic blood pressure measurement.
 Stratify the plots by gender (rows) and by race/ethnicity groups (columns).'''
 
+da["RIAGENDR"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
+
 # drop all nulls
 da_no_nulls = da[["BPXDI1", "BPXDI2", "RIAGENDR", "RIDRETH1"]].dropna()
 
