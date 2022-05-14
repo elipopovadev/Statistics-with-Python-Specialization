@@ -28,7 +28,6 @@ plt.show()
 
 
 # Second solution:
-
 # create plot
 g = sns.jointplot(x="BMXLEG", y="BMXARML", kind='kde', data=da)
 
