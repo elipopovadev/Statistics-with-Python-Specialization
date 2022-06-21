@@ -21,6 +21,8 @@ At the end of each week, learners will apply the statistical concepts they’ve 
 In this course, we will explore basic principles behind using data for estimation and for assessing theories. We will analyze both categorical data and quantitative data, starting with one population techniques and expanding to handle comparisons of two populations. We will learn how to construct confidence intervals. We will also use sample data to assess whether or not a theory about the value of a parameter is consistent with the data. A major focus will be on interpreting inferential results appropriately.  
 At the end of each week, learners will apply what they’ve learned using Python within the course environment. During these lab-based sessions, learners will work through tutorials focusing on specific case studies to help solidify the week’s statistical concepts, which will include further deep dives into Python libraries including Statsmodels, Pandas, and Seaborn. This course utilizes the Jupyter Notebook environment within Coursera.
 
+[Coursera QWCGR28KUYGZ.pdf](https://github.com/elipopovadev/Statistics-with-Python-Specialization/files/8953179/Coursera.QWCGR28KUYGZ.pdf)
+
 
 ## Course 3: Fitting Statistical Models to Data with Python
 In this course, we will expand our exploration of statistical inference techniques by focusing on the science and art of fitting statistical models to data. We will build on the concepts presented in the Statistical Inference course (Course 2) to emphasize the importance of connecting research questions to our data analysis methods. We will also focus on various modeling objectives, including making inference about relationships between variables and generating predictions for future observations.
